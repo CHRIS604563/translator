@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Translator UI</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=compare_arrows" />
+  <style>
+    :root{
+      --bg:#0f172a;
+      --panel:#1e293b;
+      --accent:#ef4444;
+      --text:#f1f5f9;
+      --muted:#94a3b8;
+      --radius:12px;
+      font-family: Inter, sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+
+    .container{width:100%;max-width:960px;display:grid;gap:20px;grid-template-columns:1fr 1fr}
+
+    header{grid-column:1/-1;text-align:center;margin-bottom:10px}
+    header h1{font-size:24px;font-weight:600}
+    header p{font-size:14px;color:var(--muted);margin-top:4px}
+
+    .panel{background:var(--panel);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:10px}
+
+    .controls{display:flex;gap:10px}
+    select, button{padding:8px 12px;border:none;border-radius:var(--radius);font-size:14px}
+    select{flex:1;background:#0f172a;color:var(--text)}
+    button{cursor:pointer}
+    .primary{background:var(--accent);color:#fff}
+    .ghost{background:transparent;border:1px solid var(--muted);color:var(--muted)}
+
+    textarea{flex:1;min-height:200px;background:#0f172a;color:var(--text);border:none;border-radius:var(--radius);padding:12px;font-size:15px;resize:none;outline:none}
+
+    .meta{font-size:12px;color:var(--muted);text-align:right}
+
+    .history{display:flex;flex-direction:column;gap:8px;max-height:200px;overflow-y:auto}
+    .history-item{background:#0f172a;padding:10px;border-radius:var(--radius);font-size:13px}
+
+    footer{grid-column:1/-1;text-align:center;font-size:12px;color:var(--muted);margin-top:6px}
+
+    @media(max-width:800px){.container{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Translator</h1>
+      <p>A clean and minimal interface</p>
+    </header>
+
+    <section class="panel">
+      <div class="controls">
+        <select id="srcLang">
+          
+          <option value="en">English</option>
+          <option value="pt">Portuguese</option>
+          <option value="es">Spanish</option>
+        </select>
+      <button class="toEl">
+<span class="material-symbols-outlined">
+compare_arrows
+</span>      </button>
+        <select id="tgtLang">
+          <option value="en">English</option>
+          <option value="pt" selected>Portuguese</option>
+          <option value="es">Spanish</option>
+        </select>
+      </div>
+      <textarea id="source" placeholder="Type text..."></textarea>
+      <button class="primary" id="translateBtn">Translate</button>
+      <div class="meta"><span id="srcCount">0</span> chars</div>
+    </section>
+
+    <section class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>Result</div>
+        <button class="ghost" id="copyResult">Copy</button>
+      </div>
+      <textarea id="result" placeholder="Translation..." readonly></textarea>
+      <div class="meta"><span id="tgtCount">0</span> chars</div>
+    </section>
+
+    <section class="panel" style="grid-column:1/-1">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div>History</div>
+        <button class="ghost" id="clearHistory">Clear</button>
+      </div>
+      <div class="history" id="historyList"></div>
+    </section>
+
+    <footer>Clean Translator UI • Replace mock function with your API</footer>
+  </div>
+
+
+  <script src="in.js"></script>
+</body>
+</html>
